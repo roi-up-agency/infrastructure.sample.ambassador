@@ -1,1 +1,5 @@
 .idea
+**/key.json
+**/.terraformter
+**/*.tfstate
+**/*.tfstate.backup

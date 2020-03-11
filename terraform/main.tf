@@ -22,15 +22,15 @@ resource "google_container_cluster" "primary" {
   name     = var.cluster_name
   location = var.zone
 
-  network = "shared-vpc-daassuite"
-  subnetwork = "subnet-dassuite-security"
-  ip_allocation_policy {
-    # usar directamente el nombre de subredes ya creadas
-    #cluster_secondary_range_name = "subred-ya-existente-con-nombre"
-    #services_secondary_range_name = "subred-ya-existente-con-nombre"
-    cluster_ipv4_cidr_block = "10.4.0.0/14"
-    services_ipv4_cidr_block = "10.0.32.0/20"
-  }
+//  network = "shared-vpc-daassuite"
+//  subnetwork = "subnet-dassuite-security"
+//  ip_allocation_policy {
+//    # usar directamente el nombre de subredes ya creadas
+//    #cluster_secondary_range_name = "subred-ya-existente-con-nombre"
+//    #services_secondary_range_name = "subred-ya-existente-con-nombre"
+//    cluster_ipv4_cidr_block = "10.4.0.0/14"
+//    services_ipv4_cidr_block = "10.0.32.0/20"
+//  }
 
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default

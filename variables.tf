@@ -16,7 +16,7 @@ variable "zone" {
 }
 
 variable "machine_type" {
-  default = "n1-highcpu-2"
+  default = "n1-standard-1"
 }
 
 variable "number_nodes" {
@@ -25,5 +25,5 @@ variable "number_nodes" {
 }
 
 variable "cluster_name" {
-  default = "ambassador"
+  default = "ambassador-test"
 }

@@ -1,13 +1,3 @@
-// provision subnets for cluster nodes, services and pods
-
-// provision cluster
-//    use provisioned subnets for nodes, services, pods
-
-// provision loadbalancer
-
-// provision static_ip
-
-
 provider "google" {
   version = "3.5.0"
 
@@ -18,18 +8,22 @@ provider "google" {
   zone    = var.zone
 }
 
+resource "google_compute_address" "ambassador_static_ip" {
+  name = "ambassador-test-static-ip"
+}
+
 resource "google_container_cluster" "primary" {
   name     = var.cluster_name
   location = var.zone
 
-//  network = "shared-vpc-daassuite"
-//  subnetwork = "subnet-dassuite-security"
+//  network = "daas-suite-test-network"
+//  subnetwork = "main-subnet-nodes-test-daas-security-eu-west-1"
 //  ip_allocation_policy {
 //    # usar directamente el nombre de subredes ya creadas
-//    #cluster_secondary_range_name = "subred-ya-existente-con-nombre"
-//    #services_secondary_range_name = "subred-ya-existente-con-nombre"
-//    cluster_ipv4_cidr_block = "10.4.0.0/14"
-//    services_ipv4_cidr_block = "10.0.32.0/20"
+//    cluster_secondary_range_name = "secundary-subnet-pods-test-daas-security-eu-west-1"
+//    services_secondary_range_name = "secundary-subnet-services-test-daas-security-eu-west-1"
+////    cluster_ipv4_cidr_block = "10.4.0.0/14"
+////    services_ipv4_cidr_block = "10.0.32.0/20"
 //  }
 
   # We can't create a cluster with no node pool defined, but we want to only use
@@ -46,6 +40,7 @@ resource "google_container_cluster" "primary" {
       issue_client_certificate = false
     }
   }
+
 }
 
 resource "google_container_node_pool" "primary_preemptible_nodes" {

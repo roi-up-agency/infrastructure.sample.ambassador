@@ -1,5 +1,8 @@
 .idea
-**/key.json
-**/.terraform
+key.json
+.terraform
 **/*.tfstate
 **/*.tfstate.backup
+.terraform.tfstate.lock.info
+ambassador_static_id.txt
+aes.yaml

@@ -16,15 +16,15 @@ resource "google_container_cluster" "primary" {
   name     = var.cluster_name
   location = var.zone
 
-//  network = "daas-suite-test-network"
-//  subnetwork = "main-subnet-nodes-test-daas-security-eu-west-1"
-//  ip_allocation_policy {
-//    # usar directamente el nombre de subredes ya creadas
-//    cluster_secondary_range_name = "secundary-subnet-pods-test-daas-security-eu-west-1"
-//    services_secondary_range_name = "secundary-subnet-services-test-daas-security-eu-west-1"
-////    cluster_ipv4_cidr_block = "10.4.0.0/14"
-////    services_ipv4_cidr_block = "10.0.32.0/20"
-//  }
+  network = var.newtork
+  subnetwork = var.subnewtork
+  ip_allocation_policy {
+    # usar directamente el nombre de subredes ya creadas
+    cluster_secondary_range_name = var.pods_subnewtork
+    services_secondary_range_name = var.services_subnewtork
+//    cluster_ipv4_cidr_block = "10.4.0.0/14"
+//    services_ipv4_cidr_block = "10.0.32.0/20"
+  }
 
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default

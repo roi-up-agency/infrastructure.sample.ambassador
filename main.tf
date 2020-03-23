@@ -16,7 +16,14 @@ resource "google_container_cluster" "primary" {
   name     = var.cluster_name
   location = var.zone
 
-  network = var.newtork
+  private_cluster_config {
+//    enable_private_endpoint = true
+    enable_private_endpoint = false
+    enable_private_nodes = true
+    master_ipv4_cidr_block = var.masterIpv4Cidr
+  }
+
+  network = var.network
   subnetwork = var.subnewtork
   ip_allocation_policy {
     # usar directamente el nombre de subredes ya creadas
@@ -32,6 +39,12 @@ resource "google_container_cluster" "primary" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
+//  master_authorized_networks_config {
+//
+//    cidr_blocks {
+//      cidr_block = var.cloudShellIP
+//    }
+//  }
   master_auth {
     username = ""
     password = ""
@@ -59,7 +72,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
     metadata = {
       disable-legacy-endpoints = "true"
     }
-
+    tags = var.nodeTags
     oauth_scopes = [
       "https://www.googleapis.com/auth/logging.write",
       "https://www.googleapis.com/auth/monitoring",

@@ -36,3 +36,10 @@
     # NOTE: it may fail due to certbot giving certificate to a domain out of the scope of our organization ( e.g: https://awesome-faraday-3778.edgestack.me) try again if this is the case
     $ edgectl install
 ​     
+
+#### NOTA: HAY QUE APLICAR REGLAS DE FIREWALL PARA PERMITIR TRAFICO EXTERNO 
+
+    
+    $ kubectl get events -A | grep "Firewall change"
+    
+    Esto debe mostrar que reglas hacen falta. Te las pinta ya
